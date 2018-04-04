@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {PureComponent} from 'react'
 import Article from '../Article'
 import './style.css'
 
@@ -14,13 +14,30 @@ import './style.css'
 // }
 
 //выводит массив
-export default function ArticleList({ articles }){
-    const articleElement = articles.map(article =>
-        <li key = {article.id} className="article-list__li"><Article article = {article}/></li>
-    )
-    return (
-        <ul>
-            {articleElement}
-        </ul>
-    )
+// export default function ArticleList({ articles }){
+//     const articleElement = articles.map((article, index) =>
+//         <li key = {article.id} className="article-list__li">
+//             <Article article = {article} defaultOpen = {index === 0} />
+//         </li>
+//     )
+//     return (
+//         <ul>
+//             {articleElement}
+//         </ul>
+//     )
+// }
+
+export default class ArticleList extends PureComponent {
+    render() {
+        const articleElement = this.props.articles.map((article, index) =>
+            <li key = {article.id} className="article-list__li">
+                <Article article = {article} defaultOpen = {index === 0} />
+            </li>
+        )
+        return (
+            <ul>
+                {articleElement}
+            </ul>
+        )
+    }
 }
